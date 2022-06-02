@@ -6,3 +6,7 @@ h2 {
     margin: 40px 30px;
     text-align: left;
 }
+
+.grafico{
+    display: flex;
+}
