@@ -1,0 +1,43 @@
+.widgetEsq{
+    flex: 1;
+}
+
+.widgetEsqTitle{
+    font-size: 32px;
+    font-weight: 600;
+}
+
+.widgetEsqImg{
+    width: 40px;
+    height: 40px;
+    margin-right: 20px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.widgetEsqList{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.widgetEsqListItem{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin: 20px 0px;
+}
+
+.widgetEsqUser{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.widgetEsqUsername{
+    font-weight: 600;
+}
+
+.widgetEsqUserTitle{
+    font-weight: 300;
+}

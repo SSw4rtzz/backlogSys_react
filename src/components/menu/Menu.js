@@ -8,6 +8,9 @@ export default function Menu(){
     return(
         <div className="menu">
             <div className="menuWrapper">
+            <div className="top">
+                    <span className="logo">BacklogSys</span>    {/* Logotipo BacklogSys na parte superior esquerda */}
+                </div>
                 <div className="menuContent">
                     <h3 className="menuTitle"> Opções </h3>
                     <ul className="menuList">

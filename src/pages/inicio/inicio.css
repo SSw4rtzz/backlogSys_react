@@ -1,5 +1,9 @@
 .inicio{
-    flex: 4;
+    display: flex;
+}
+
+.inicioContainer{
+    flex: 6;
 }
 
 h2 {
@@ -10,3 +14,17 @@ h2 {
 .grafico{
     display: flex;
 }
+
+.widgetsInicio{
+    display: flex;
+    margin: 20px;
+}
+
+/* Esconde os Scrolls */
+html{
+    overflow: scroll;
+    overflow-x: hidden;
+}
+::-webkit-scrollbar{
+    width: 0;
+    background:transparent;}

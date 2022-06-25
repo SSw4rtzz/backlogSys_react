@@ -1,0 +1,32 @@
+.widgetDir{
+    flex: 2;
+}
+
+.widgetDirTitle{
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.widgetDirTable{
+    width: 100%;
+    border-spacing: 20px;
+}
+
+.widgetDirTh{
+    text-align: center;
+}
+
+.widgetDirTarefa{
+    align-items: center;
+}
+
+.widgetDirPessoa{
+    align-items: center;
+}
+
+.widgetDirDate .widgetDirStatus{
+    font-weight: 300;
+}
+
+
+

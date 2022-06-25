@@ -10,9 +10,8 @@ export default function Topbar(){
         <div className="topbar">
             <div className="topbarWrapper">
                 <div className="topLeft">
-                    <span className="logo">BacklogSys</span>    {/* Logotipo BacklogSys na parte superior esquerda */}
                 </div>
-                <div className="topRight">
+                <div className="items">
                     <div className="topbarIcons">
                         <FontAwesomeIcon icon={["fas","bell"]} />   {/* Icon notificações */}
                         <span className="topNotifications">1</span> {/* Numero de notificações, TENTAR AUTOMATIZAR */}

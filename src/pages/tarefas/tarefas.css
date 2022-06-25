@@ -1,0 +1,8 @@
+.tarefas{
+    flex: 4;
+    width: 100%;
+}
+
+.tarefasContainer{
+    flex: 6;
+}

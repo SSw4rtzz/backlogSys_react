@@ -1,9 +1,23 @@
 .menu{
     flex: 1;
-    height: calc(100vh - 50px);
+    min-height: 100vh;
     background-color: #fcfcfc;
     position: sticky;
     top: 50px;
+}
+
+.top{
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo{
+    font-weight: bold;
+    font-size: 30px;
+    color: black;
+    cursor: pointer;
 }
 
 .menuWrapper{
