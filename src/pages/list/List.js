@@ -1,7 +1,19 @@
-import React from 'react'
+import "./list.css"
+import Menu from "../../components/menu/Menu"
+import Topbar from "../../components/topbar/Topbar"
+import DadosTabela from "../../components/dadosTabela/DadosTabela"
 
-export default function List() {
+const List = () => {
   return (
-    <div>List</div>
+    <div className="list">
+      <Menu/>
+      <div className="listContainer">
+        <Topbar/>
+        <DadosTabela/>
+      </div>
+    </div>
   )
 }
+
+
+export default List;

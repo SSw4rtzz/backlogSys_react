@@ -22,7 +22,6 @@ const Inicio = () => {
             <div className="widgetsInicio">
                 <WidgetEsq/>
                 <WidgetDir/>
-
             </div>
         </div>
     </div>

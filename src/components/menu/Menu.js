@@ -39,11 +39,11 @@ export default function Menu(){
                         </li>
                         <li className="menuListItem">
                             <FontAwesomeIcon icon={["fas","chart-pie"]} className="iconMenu"/>   {/* Desempenho pessoal (A ideia é mostrar um grafico do desempenho pessoal) */}
-                            Desempenho pessoal
+                            Desemp. pessoal
                         </li>
                         <li className="menuListItem">
                             <FontAwesomeIcon icon={["fas","chart-line"]} className="iconMenu"/>   {/* Equipa (A ideia é mostrar o que está a fazer a equipa pertencente) */}
-                            Desempenho da equipa
+                            Desemp. equipa
                         </li>
                     </ul>
                     <h3 className="menuTitle"> Administração </h3>
@@ -54,7 +54,7 @@ export default function Menu(){
                         </li>
                         <li className="menuListItem">
                             <FontAwesomeIcon icon={["fas","calendar-check"]} className="iconMenu"/>   {/* Team leader e chefe podem definir prazos e definir tarefas a trabalhadores, o chefe pode ainda definir prioritárias */}
-                            Definir tarefas e prazos
+                            Definir prazos
                         </li>
                         <li className="menuListItem">
                             <FontAwesomeIcon icon={["fas","chart-simple"]} className="iconMenu"/>   {/* Ver estatisticas de todas as equipas (Chefe apenas) */}
