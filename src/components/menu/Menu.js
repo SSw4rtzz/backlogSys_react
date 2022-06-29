@@ -3,6 +3,10 @@ import "./menu.css";
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { fas } from '@fortawesome/free-solid-svg-icons';
+import { NavLink } from "react-router-dom";
+
+library.add(fas);
+
 
 export default function Menu(){
     return(
@@ -14,14 +18,19 @@ export default function Menu(){
                 <div className="menuContent">
                     <h3 className="menuTitle"> Opções </h3>
                     <ul className="menuList">
-                        <li className="menuListItem active">
+                        <NavLink to="/" style={{textDecoration:"none"}} className="menuListItemStyle" activeclassname="active">
+                        <li className="menuListItem">
                             <FontAwesomeIcon icon={["fas","house"]} className="iconMenu"/>   {/*  Inicio */}
                             Inicio
                         </li>
+                        </NavLink>
+                        <NavLink to="/tarefas" style={{textDecoration:"none"}} className="menuListItemStyle" activeclassname="active">
                         <li className="menuListItem">
-                                <FontAwesomeIcon icon={["fas","list-check"]} className="iconMenu"/>   {/* Tarefas (Ver as tarefas todas) */}
-                                Tarefas
+                            <FontAwesomeIcon icon={["fas","list-check"]} className="iconMenu"/>   {/* Tarefas (Ver as tarefas todas) */}
+                            Tarefas
                         </li>
+                        </NavLink>
+
                         <li className="menuListItem">
                             <FontAwesomeIcon icon={["fas","users"]} className="iconMenu" />   {/* Equipa (A ideia é mostrar o que está a fazer a equipa pertencente) */}
                             Equipa

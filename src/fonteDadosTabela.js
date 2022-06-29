@@ -137,5 +137,5 @@ export const tarefaRows = [
         prazo: "01/03/2022",
         dataConclusao: null,
         prioridade: "Alta",
-    }
+    },
 ];
