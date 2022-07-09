@@ -16,7 +16,7 @@ export default function Topbar(){
                         <FontAwesomeIcon icon={["fas","bell"]} />   {/* Icon notificações */}
                         <span className="topNotifications">1</span> {/* Numero de notificações, TENTAR AUTOMATIZAR */}
                     </div>
-                    <img src={process.env.PUBLIC_URL + "avatars/admin.jpg"} alt="Profile photo" className="profilePhoto"/> {/* Foto perfil, TENTAR AUTOMATIZAR */}
+                    <img src={process.env.PUBLIC_URL + "/avatars/admin.jpg"} alt="Profile photo" className="profilePhoto"/> {/* Foto perfil, TENTAR AUTOMATIZAR */}
                 </div>
             </div>
         </div>

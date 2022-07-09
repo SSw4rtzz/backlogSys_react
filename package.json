@@ -20,6 +20,7 @@
     "recharts": "^2.1.10",
     "web-vitals": "^2.1.4"
   },
+  "proxy": "https://127.0.0.1:7126",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

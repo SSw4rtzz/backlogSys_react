@@ -1,19 +1,18 @@
 import "./list.css"
 import Menu from "../../components/menu/Menu"
 import Topbar from "../../components/topbar/Topbar"
-import DadosTabela from "../../components/dadosTabela/DadosTabela"
+import DadosTarefas from "../../components/dadosTarefas/dadosTarefas"
 
-const List = () => {
+const ListTarefas = () => {
   return (
     <div className="list">
       <Menu/>
       <div className="listContainer">
         <Topbar/>
-        <DadosTabela/>
+        <DadosTarefas/>
       </div>
     </div>
   )
 }
 
-
-export default List;
+export default ListTarefas;
