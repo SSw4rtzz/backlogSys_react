@@ -5,6 +5,7 @@ export default function WidgetDir() {
         <div className="widgetDir">
             <span className="widgetDirTitle">Ultimas alterações</span>
             <table className="widgetDirTable">
+                <tbody>
                 <tr className="widgetDirTr">
                     <th className="widgetDirTh">Tarefa</th>
                     <th className="widgetDirTh">Pessoa</th>
@@ -39,6 +40,7 @@ export default function WidgetDir() {
                         <span className="widgetDirStatus">Por fazer</span>
                     </td>
                 </tr>
+                </tbody>
             </table>
         </div>
     )

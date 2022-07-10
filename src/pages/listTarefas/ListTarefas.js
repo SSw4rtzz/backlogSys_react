@@ -1,7 +1,7 @@
-import "./list.css"
+import "./listTarefas.css"
 import Menu from "../../components/menu/Menu"
 import Topbar from "../../components/topbar/Topbar"
-import DadosTarefas from "../../components/dadosTarefas/dadosTarefas"
+import DadosTarefas from "../../components/dadosTarefas/DadosTarefas"
 
 const ListTarefas = () => {
   return (

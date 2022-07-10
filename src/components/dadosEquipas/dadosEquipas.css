@@ -1,0 +1,101 @@
+.dadosEquipas{
+    height: 600px;
+    padding: 20px;
+}
+
+.dadosEquipasTitle{
+    width: 100%;
+    font-size: 24px;
+    color: gray;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.link{
+    text-decoration: none;
+    color: green;
+    font-size: 16px;
+    font-weight: 400;
+    border: 1px solid green;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.link:hover{
+    color: white;
+    background-color: #55a867;
+}
+
+/* Cor dos status */
+.cellWithStatus, .cellWithPriorities{
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.cellWithStatus.fazer{
+    background-color: rgba(218, 218, 218, 0.5);
+    color: rgb(66, 66, 66);
+}
+.cellWithStatus.desenvolvimento{
+    background-color: #FFF7CD;
+    color: #7A4F01;
+}
+.cellWithStatus.Pendente{
+    background-color: #cdf3ff;
+    color: #01787a;
+}
+.cellWithStatus.Concluido{
+    background-color: #cdffd8;
+    color: #017a03;
+}
+
+/* ----------------- */
+
+/* Cor das prioridades */
+.cellWithPriorities.Alta{
+    background-color: #FFE7D9;
+    color: #7A0C2E;
+    font-weight: 600;
+}
+.cellWithPriorities.Média{
+    background-color: #FFF7CD;
+    color: #7A4F01;
+}
+.cellWithPriorities.Baixa{
+    background-color: #cdffd8;
+    color: #017a03;
+}
+/* ----------------- */
+
+.cellOption{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.viewButton{
+    padding: 2px 5px;
+    font-size: 20px;
+    border-radius: 5px;
+    color: black;
+    cursor: pointer;
+}
+
+.viewButton:hover{
+    color:gray
+}
+
+.deleteButton{
+    padding: 2px 5px;
+    font-size: 20px;
+    border-radius: 5px;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+}
+
+.deleteButton:hover{
+    color: rgb(197, 15, 15);
+}
+

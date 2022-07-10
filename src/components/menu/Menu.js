@@ -30,11 +30,12 @@ export default function Menu(){
                             Tarefas
                         </li>
                         </NavLink>
-
+                        <NavLink to="/equipa" style={{textDecoration:"none"}} className="menuListItemStyle" activeclassname="active">
                         <li className="menuListItem">
-                            <FontAwesomeIcon icon={["fas","users"]} className="iconMenu" />   {/* Equipa (A ideia é mostrar o que está a fazer a equipa pertencente) */}
+                            <FontAwesomeIcon icon={["fas","users"]} className="iconMenu" />   {/* Equipa */}
                             Equipa
                         </li>
+                        </NavLink>
                     </ul>
                     <h3 className="menuTitle"> Área Pessoal </h3>
                     <ul className="menuList">
@@ -57,10 +58,12 @@ export default function Menu(){
                     </ul>
                     <h3 className="menuTitle"> Administração </h3>
                     <ul className="menuList">
+                    <NavLink to="/gerirEquipas" style={{textDecoration:"none"}} className="menuListItemStyle" activeclassname="active">
                         <li className="menuListItem">
                             <FontAwesomeIcon icon={["fas","users-gear"]} className="iconMenu"/>   {/*  Gerir todas as equipas, ou no caso do team leader a sua */}
                             Equipas
                         </li>
+                    </NavLink>
                         <li className="menuListItem">
                             <FontAwesomeIcon icon={["fas","calendar-check"]} className="iconMenu"/>   {/* Team leader e chefe podem definir prazos e definir tarefas a trabalhadores, o chefe pode ainda definir prioritárias */}
                             Definir prazos

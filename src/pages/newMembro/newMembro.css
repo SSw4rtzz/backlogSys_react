@@ -1,0 +1,64 @@
+.new{
+    width: 100%;
+    display: flex;
+    text-align: left;
+}
+
+.newContainer{
+    flex: 6;
+}
+
+.top, .bottom{
+    padding: 10px;
+    margin: 20px;
+    display: flex;
+}
+
+h1{
+    color: lightgray;
+    font-size: 20px;
+}
+
+.right{
+    flex: 2px;
+}
+
+.form{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: space-around;
+}
+
+.formImput{
+    width: 40%;
+}
+
+.input{
+    width: 100%;
+    padding: 5px;
+    border: none;
+    border-bottom: 1px solid gray;
+}
+
+.label{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.icon{
+    cursor: pointer;
+}
+
+.button{
+    width: 150px;
+    padding: 10px;
+    border: none;
+    background-color: teal;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
