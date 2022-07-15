@@ -10,12 +10,11 @@ import ListEquipas from './pages/listEquipas/ListEquipas';
 import SingleMembros from './pages/singleMembros/SingleMembros';
 import NewMembro from './pages/newMembro/NewMembro';
 import ListMembros from './pages/listMembros/ListMembros';
+import SingleUser from './pages/singleUser/SingleUser';
 import Login from './pages/login/Login';
-import { useState,useEffect } from "react";
 
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import React from 'react';
-
 
 // Recebe os dados das Tarefas a partir da API
 async function getTarefas() {
@@ -25,6 +24,40 @@ let dados = await fetch("/api/TarefasAPI/");
     throw new Error("Erro ao carregar a API, codigo: " + dados.status)
   }
   return await dados.json(); //Exporta os dados recebidos da API
+}
+
+//Insere os dados do uma tarefa na API
+async function InsereTarefa(tarefa) {
+  //Criar o contentor que levará os dados para a API
+  let myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+
+  let raw = JSON.stringify({
+    "titulo": tarefa.titulo,
+    "descricao": tarefa.descricao,
+    "pontoSituacao": tarefa.pontoSituacao,
+    "membrosFK": tarefa.membrosFK,
+    "dataCriacao": tarefa.dataCriacao,
+    "dataConclusao": tarefa.dataConclusao,
+    "prazo": tarefa.prazo,
+    "prioridade": tarefa.prioridade
+  });
+//Metodo formData retorna erro 415, o qual não consegui corrigir
+  /*let formData = new FormData();
+  formData.append("Titulo", tarefa.titulo);
+  formData.append("Descricao", tarefa.descricao);
+  formData.append("PontoSituacao", tarefa.pontoSituacao);
+  formData.append("MembrosFK", tarefa.membrosFK);
+  formData.append("DataCriacao", tarefa.dataCriacao);
+  formData.append("DataConclusao", tarefa.dataConclusao);
+  formData.append("Prazo", tarefa.Prazo);
+  formData.append("Prioridade", tarefa.prioridade);*/
+  //Entrega os dados à API
+  let resposta = await fetch("/api/TarefasAPI/", { method: "POST", headers: myHeaders, body: raw });
+  if (!resposta.ok){
+    console.error(resposta)
+    throw new Error("Erro ao adicionar dados à API, codigo: " + resposta.status)
+  }  
 }
 
 // Recebe os dados dos Membros a partir da API
@@ -47,7 +80,10 @@ async function getEquipas() {
     return await dados.json(); //Exporta os dados recebidos da API
 }
 
+
 class App extends React.Component {
+
+  
   state = {
     tarefas: [],
     membros: [],
@@ -90,8 +126,30 @@ class App extends React.Component {
     }
   }
 
+  //Envia os dados para a API
+  handleNovaTarefa = async (tarefa) => {
+    try{
+      await InsereTarefa(tarefa); //Exporta os dados para a API
+      this.LoadTarefas(); //Recarrega a lista de tarefas
+    } catch(erro){
+      //Debug 8
+      console.error("Ocorreu um erro ao adicionar a tarefa ("
+      + tarefa.titulo + "|" 
+      + tarefa.descricao + "|" 
+      + tarefa.pontoSituacao + "|" 
+      + tarefa.membrosFK + "|" 
+      + tarefa.prioridade + "|" 
+      + tarefa.dataCriacao + "|"
+      + tarefa.dataConclusao + "|"
+      + tarefa.prazo + ")")
+    }
+    
+  }
+
+
 
   render(){
+
 
     // Lê os dados do state
     const{tarefas, membros, equipas} = this.state;
@@ -108,20 +166,24 @@ class App extends React.Component {
 
               <Route path="tarefas">
                 <Route index element={<ListTarefas/>} />
-                <Route path=':tarefaId' element={<SingleTarefas dados={tarefas}/>} />
+                <Route path=':tarefaId' element={<SingleTarefas dadosIn={tarefas}/>} />
                 <Route
                   path="new"
-                  element={<NewTarefa inputs={tarefas} title="Adicionar nova tarefa" />}
+                  element={<NewTarefa inputs={tarefas} dadosOut={this.handleNovaTarefa} />}
                 />
               </Route>
 
               <Route path="equipa">
-              <Route index element={<ListMembros/>} />
+                <Route index element={<ListMembros/>} />
                 <Route path=':membroId' element={<SingleMembros dados={membros}/>} />
                 <Route
                   path="new"
                   element={<NewMembro inputs={membros} title="Adicionar novo membro" />}
                 />
+              </Route>
+
+              <Route path="user">
+                <Route index element={<SingleUser/>} />
               </Route>
               
               <Route path="gerirEquipas">

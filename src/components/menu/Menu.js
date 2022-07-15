@@ -39,10 +39,12 @@ export default function Menu(){
                     </ul>
                     <h3 className="menuTitle"> Área Pessoal </h3>
                     <ul className="menuList">
+                        <NavLink to="/user" style={{textDecoration:"none"}} className="menuListItemStyle" activeclassname="active">
                         <li className="menuListItem">
                             <FontAwesomeIcon icon={["fas","user"]} className="iconMenu"/>   {/*  Utilizador (Mostra o perfil do utilizador) */}
                             Utilizador
                         </li>
+                        </NavLink>
                         <li className="menuListItem">
                             <FontAwesomeIcon icon={["fas","list"]} className="iconMenu"/>   {/* Tarefas (Ver as tarefas todas) */}
                             As minhas tarefas
