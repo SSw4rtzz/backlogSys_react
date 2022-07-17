@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import Inicio from './pages/inicio/Inicio';
 import SingleTarefas from './pages/singleTarefas/SingleTarefas';
@@ -11,10 +10,11 @@ import SingleMembros from './pages/singleMembros/SingleMembros';
 import NewMembro from './pages/newMembro/NewMembro';
 import ListMembros from './pages/listMembros/ListMembros';
 import SingleUser from './pages/singleUser/SingleUser';
-import Login from './pages/login/Login';
+import EditTarefa from './pages/editTarefa/EditTarefa';
 
-import { BrowserRouter, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route} from 'react-router-dom';
 import React from 'react';
+
 
 // Recebe os dados das Tarefas a partir da API
 async function getTarefas() {
@@ -42,18 +42,53 @@ async function InsereTarefa(tarefa) {
     "prazo": tarefa.prazo,
     "prioridade": tarefa.prioridade
   });
-//Metodo formData retorna erro 415, o qual não consegui corrigir
-  /*let formData = new FormData();
-  formData.append("Titulo", tarefa.titulo);
-  formData.append("Descricao", tarefa.descricao);
-  formData.append("PontoSituacao", tarefa.pontoSituacao);
-  formData.append("MembrosFK", tarefa.membrosFK);
-  formData.append("DataCriacao", tarefa.dataCriacao);
-  formData.append("DataConclusao", tarefa.dataConclusao);
-  formData.append("Prazo", tarefa.Prazo);
-  formData.append("Prioridade", tarefa.prioridade);*/
   //Entrega os dados à API
   let resposta = await fetch("/api/TarefasAPI/", { method: "POST", headers: myHeaders, body: raw });
+  if (!resposta.ok){
+    console.error(resposta)
+    throw new Error("Erro ao adicionar dados à API, codigo: " + resposta.status)
+  }  
+}
+
+//Edita os dados do uma tarefa na API
+async function EditarTarefa(tarefa) {
+  //Criar o contentor que levará os dados para a API
+  let myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+
+  let raw = JSON.stringify({
+    "id": tarefa.id,
+    "titulo": tarefa.titulo,
+    "descricao": tarefa.descricao,
+    "pontoSituacao": tarefa.pontoSituacao,
+    "membrosFK": tarefa.membrosFK,
+    "dataCriacao": tarefa.dataCriacao,
+    "dataConclusao": tarefa.dataConclusao,
+    "prazo": tarefa.prazo,
+    "prioridade": tarefa.prioridade
+  });
+  //Entrega os dados à API
+  let resposta = await fetch("/api/TarefasAPI/".concat(tarefa.id), { method: "PUT", headers: myHeaders, body: raw });
+  if (!resposta.ok){
+    console.error(resposta)
+    throw new Error("Erro ao editar os dados da API, codigo: " + resposta.status)
+  }  
+}
+
+//Insere os dados da equipa à API
+async function InsereEquipa(equipa) {
+  //Criar o contentor que levará os dados para a API
+  let myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+
+  let raw = JSON.stringify({
+    "nome": equipa.nome,
+    "email": equipa.email,
+    "teamLeader": equipa.teamLeader,
+    "chefe": equipa.chefe
+  });
+  //Entrega os dados à API
+  let resposta = await fetch("/api/EquipasAPI/", { method: "POST", headers: myHeaders, body: raw });
   if (!resposta.ok){
     console.error(resposta)
     throw new Error("Erro ao adicionar dados à API, codigo: " + resposta.status)
@@ -126,7 +161,8 @@ class App extends React.Component {
     }
   }
 
-  //Envia os dados para a API
+/*********************************** HANDLE TAREFAS **********************************/
+  //Envia os dados da tarefa para a API
   handleNovaTarefa = async (tarefa) => {
     try{
       await InsereTarefa(tarefa); //Exporta os dados para a API
@@ -143,17 +179,52 @@ class App extends React.Component {
       + tarefa.dataConclusao + "|"
       + tarefa.prazo + ")")
     }
-    
+  }
+
+  //Envia os dados para a API
+  handleEditTarefa = async (tarefa) => {
+    try{
+      await EditarTarefa(tarefa); //Exporta os dados para a API
+      this.LoadTarefas(); //Recarrega a lista de tarefas
+    } catch(erro){
+      //Debug 9
+      console.error("Ocorreu um erro ao editar a tarefa ("
+      + tarefa.id + "|" 
+      + tarefa.titulo + "|" 
+      + tarefa.descricao + "|" 
+      + tarefa.pontoSituacao + "|" 
+      + tarefa.membrosFK + "|" 
+      + tarefa.prioridade + "|" 
+      + tarefa.dataCriacao + "|"
+      + tarefa.dataConclusao + "|"
+      + tarefa.prazo + ")")
+    }
+  }
+
+  //Envia os dados da equipa para a API
+  handleNovaEquipa = async (equipa) => {
+    try{
+      await InsereEquipa(equipa); //Exporta os dados para a API
+      this.LoadEquipas(); //Recarrega a lista de tarefas
+    } catch(erro){
+      //Debug 10
+      console.error("Ocorreu um erro ao editar a tarefa ("
+      + equipa.id + "|" 
+      + equipa.nome + "|" 
+      + equipa.email + "|" 
+      + equipa.teamLeader + "|" 
+      + equipa.chefe + ")")
+    }
   }
 
 
 
   render(){
 
-
     // Lê os dados do state
     const{tarefas, membros, equipas} = this.state;
     //console.log(tarefas[0]) //Debug 3
+
 
 
     return (
@@ -162,7 +233,6 @@ class App extends React.Component {
           <Routes>
             <Route path="/">
               <Route index element={<Inicio />} />
-              <Route path="login" element={<Login/>} />
 
               <Route path="tarefas">
                 <Route index element={<ListTarefas/>} />
@@ -171,6 +241,10 @@ class App extends React.Component {
                   path="new"
                   element={<NewTarefa inputs={tarefas} dadosOut={this.handleNovaTarefa} />}
                 />
+                <Route
+                  path="edit/:tarefaId"
+                  element={<EditTarefa inputs={tarefas} dadosOut={this.handleEditTarefa} />}
+                />
               </Route>
 
               <Route path="equipa">
@@ -178,7 +252,7 @@ class App extends React.Component {
                 <Route path=':membroId' element={<SingleMembros dados={membros}/>} />
                 <Route
                   path="new"
-                  element={<NewMembro inputs={membros} title="Adicionar novo membro" />}
+                  element={<NewMembro inputs={membros} dadosOut={this.handleNovaEquipa} title="Adicionar novo membro" />}
                 />
               </Route>
 

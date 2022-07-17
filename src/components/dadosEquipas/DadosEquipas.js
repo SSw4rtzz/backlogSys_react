@@ -1,6 +1,6 @@
 import "./dadosEquipas.css";
 import {DataGrid} from "@mui/x-data-grid";
-import {Link, Navigate, useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import { useState,useEffect } from "react";
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -27,12 +27,14 @@ const DadosEquipas = () => {
         .then((data) => setTableData(data))
     }, [])
 
-    console.log(tableData)  //Teste
+    console.log(tableData)  //Debug 2
 
+    //Apaga linha/dado
     const handleDelete = (id) => {
         setTableData(tableData.filter((item) => item.id !== id));
     };
 
+    //Mostra a equipa individual navegando para o link /gerirEquipas/(id selecionado)
     const navigate = useNavigate();
     const routeChange = (id) => {
         navigate('/gerirEquipas/'.concat(id));
@@ -74,6 +76,7 @@ const DadosEquipas = () => {
                    Adicionar
                 </Link>
             </div>
+            {/* Tabela criada com framework DataGrid */}
             <DataGrid className="dataGrid"
                 columns={columns.concat(optionColumn)}
                 rows={tableData}

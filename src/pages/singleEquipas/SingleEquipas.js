@@ -4,7 +4,7 @@ import Topbar from "../../components/topbar/Topbar"
 
 import React from "react";
 
-async function getEquipas(id) {
+async function getEquipas() {
 
   //Corta o url de forma a fica só com o ultimo numero apresentado, que representa o id da tarefa
   var id = window.location.pathname;

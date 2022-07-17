@@ -7,14 +7,14 @@ import React from "react";
 
 class NewTarefa extends React.Component{
 
+
   //Cria objeto State para recolher os dados do formulário
   novaTarefa={
     titulo: "",
     descricao: "",
     pontoSituacao: "",
     membrosFK: "",
-    prazo: "",
-    dataCriacao: "",
+    dataCriacao: new Date(new Date().toString().split('GMT')[0]+' UTC').toISOString().split('.')[0],
     prazo: "",
     dataConclusao: "",
     prioridade: ""
@@ -25,7 +25,6 @@ class NewTarefa extends React.Component{
 //Função para capturar os dados do formulário
   handleAdicao = (e) => {
     const{name, value} = e.target; //Extrair os dados do evento, name -> nome do campo, value -> valor do campo
-    
     //Adiciona os dados ao state
     this.setState({
       [name]: value,
@@ -55,8 +54,8 @@ class NewTarefa extends React.Component{
 
   render(){
       const{titulo, descricao, pontoSituacao, membrosFK, dataCriacao, dataConclusao, prioridade, prazo} = this.state;
-
-      //document.getElementById('data').valueAsDate = new Date();
+      //Data atual
+      
   return (
     <div className="new">
       <Menu />
@@ -70,19 +69,27 @@ class NewTarefa extends React.Component{
             <form method="Post" onSubmit={this.handleFormSubmit}>
               <div className="formInput">
                 <label>Nome da tarefa: </label>
-                <input type="text" placeholder="Titulo" name="titulo" value={titulo} onChange={this.handleAdicao}/>
+                <input type="text" placeholder="Titulo" name="titulo" value={titulo} onChange={this.handleAdicao}
+                  minLength="2" maxLength="20" required/>
+                  <span className="validity"></span>
               </div>  
               <div className="formInput">
                 <label>Descrição: </label>
-                <input type="text" placeholder="Descrição" name="descricao" value={descricao} onChange={this.handleAdicao}/>
-              </div>
-              <div className="formInput">
-                <label>Ponto de Situação: </label>
-                <input type="text" placeholder="Ponto de Situação" name="pontoSituacao" value={pontoSituacao} onChange={this.handleAdicao}/>
+                <input type="textarea" placeholder="Descrição" name="descricao" value={descricao} onChange={this.handleAdicao}/>
               </div>
               <div className="formInput">
                 <label>Membros: </label>
                 <input type="number" placeholder="Membros" name="membrosFK" value={membrosFK} onChange={this.handleAdicao}/>
+              </div>
+              <div className="formInput">
+                <label>Ponto de Situação: </label>
+                <select type="text" placeholder="Ponto de Situação" name="pontoSituacao" value={pontoSituacao} onChange={this.handleAdicao}>
+                  <option value="Por fazer">Por fazer</option>
+                  <option value="Em desenvolvimento">Em desenvolvimento</option>
+                  <option value="Em espera">Em espera</option>
+                  <option value="Concluido">Concluido</option>
+                  <option value="Cancelado">Cancelado</option>
+                </select>
               </div>
               
               <div className="formInput">
@@ -91,13 +98,17 @@ class NewTarefa extends React.Component{
               </div>
               
               <div className="formInput">
-                <label>Prioridade: </label>
-                <input type="text" placeholder="Prioridade" name="prioridade" value={prioridade} onChange={this.handleAdicao}/>
-              </div>
-              
-              <div className="formInput">
                 <label>Prazo: </label>
                 <input type="datetime-local" placeholder="DD/MM/AAAA" name="prazo" value={prazo} onChange={this.handleAdicao}/>
+              </div>
+
+              <div className="formInput">
+                <label>Prioridade: </label>
+                <select type="text" placeholder="Prioridade" name="prioridade" value={prioridade} onChange={this.handleAdicao}>
+                  <option value="Baixa">Baixa</option>
+                  <option value="Média">Média</option>
+                  <option value="Alta">Alta</option>
+                </select>
               </div>
 
               <div className="formInput">

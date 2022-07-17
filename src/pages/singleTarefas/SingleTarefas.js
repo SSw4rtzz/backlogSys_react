@@ -12,9 +12,6 @@ async function getTarefas(id) {
   
   let dados = await fetch("/api/TarefasAPI/".concat(id));
   
-  /*if(id != undefined){
-    dados = await fetch("api/TarefasAPI/"+id);
-  }*/
     if (!dados.ok){
       console.error(dados)
       throw new Error("Erro ao carregar a API, codigo: " + dados.status)

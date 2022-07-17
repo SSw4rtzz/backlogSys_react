@@ -18,9 +18,12 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "recharts": "^2.1.10",
+    "sweetalert": "^2.1.2",
     "web-vitals": "^2.1.4"
   },
   "proxy": "https://127.0.0.1:7126",
+  "secure": false,
+
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

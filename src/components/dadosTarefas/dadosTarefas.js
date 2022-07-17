@@ -1,6 +1,6 @@
 import "./dadosTarefas.css";
 import {DataGrid} from "@mui/x-data-grid";
-import {Link, Navigate, useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import { useState,useEffect } from "react";
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -20,11 +20,11 @@ const columns = [
             );
         }  
     },
-    {field: "membrosFK", headerName: "Membros", width: 170, sortable: false, filterable: false},
-    {field: "dataCriacao", headerName: "Criação", width: 100},
-    {field: "dataConclusao", headerName: "Concluido", width: 100},
-    {field: "prazo", headerName: "Prazo", width: 100},
-    {field: "prioridade", headerName: "Prioridade", width: 100,
+    {field: "membrosFK", headerName: "Membros", width: 80, sortable: false, filterable: false},
+    {field: "dataCriacao", headerName: "Criação", width: 120},
+    {field: "dataConclusao", headerName: "Concluido", width: 140},
+    {field: "prazo", headerName: "Prazo", width: 140},
+    {field: "prioridade", headerName: "Prioridade", width: 90,
         renderCell: (params) => {
             return (
                 <div className={`cellWithPriorities ${params.row.prioridade}`}>
@@ -34,6 +34,20 @@ const columns = [
         }
     },
 ]
+
+async function DeleteTarefa(id){
+    let formData = new FormData();
+    formData.append("id", id);
+    let response = await fetch("/api/TarefasAPI/" + id, {
+        method: "DELETE",
+        body: formData
+    });
+    if(!response.ok){
+        console.error(response);
+        throw new Error("Erro ao apagar a tarefa, codigo: " + response.status);
+    }
+}
+
 
 const DadosTarefas = () => {
 
@@ -46,15 +60,25 @@ const DadosTarefas = () => {
         .then((data) => setTableData(data))
     }, [])
 
-    console.log(tableData)  //Teste
+    console.log(tableData)  //Debug
 
+    //Apaga linha/dado
     const handleDelete = (id) => {
-        setTableData(tableData.filter((item) => item.id !== id));
+        try{
+            DeleteTarefa(id);
+            setTableData(tableData.filter((item) => item.id !== id));
+        } catch (error){
+            console.error("Ocorreu um erro ao tentar apagar o animal");
+        }
     };
 
+    //Mostra uma tarefa individual navegando para o link /tarefas/(id da tarefa selecionada)
     const navigate = useNavigate();
-    const routeChange = (id) => {
+    const routeChangeView = (id) => {
         navigate('/tarefas/'.concat(id));
+    };
+    const routeChangeEdit = (id) => {
+        navigate('/tarefas/edit/'.concat(id));
     };
 
     //Coluna de opções, Ver e Apagar
@@ -62,7 +86,7 @@ const DadosTarefas = () => {
         {
             field: "option",
             headerName: "Opções",
-            width: 100,
+            width: 120,
             sortable: false,
             hideable: false,
             filterable: false,
@@ -70,9 +94,12 @@ const DadosTarefas = () => {
             
             renderCell: (params) => {
                 return (
-                    <div className="cellOption">
-                        <div className="viewButton" onClick={() => routeChange(params.row.id)}>
+                    <div className="cellOptionTarefas">
+                        <div className="viewButton" onClick={() => routeChangeView(params.row.id)}>
                             <FontAwesomeIcon icon={["fas","eye"]} className="viewButton" />
+                        </div>
+                        <div className="viewButton" onClick={() => routeChangeEdit(params.row.id)}>
+                            <FontAwesomeIcon icon={["fas","pen"]} className="viewButton" />
                         </div>
                         <div className="deleteButton" onClick={() => handleDelete(params.row.id)}>
                             <FontAwesomeIcon icon={["fas","trash"]} />

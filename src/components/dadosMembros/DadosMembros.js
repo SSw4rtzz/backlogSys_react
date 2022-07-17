@@ -1,6 +1,6 @@
 import "./dadosMembros.css";
 import {DataGrid} from "@mui/x-data-grid";
-import {Link, Navigate, useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import { useState,useEffect } from "react";
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -28,12 +28,14 @@ const DadosMembros = () => {
         .then((data) => setTableData(data))
     }, [])
 
-    console.log(tableData)  //Teste
+    console.log(tableData)  //Debug
 
+    //Apaga linha/dado
     const handleDelete = (id) => {
         setTableData(tableData.filter((item) => item.id !== id));
     };
 
+    //Mostra um membro individual navegando para o link /equipa/(id do membro selecionado)
     const navigate = useNavigate();
     const routeChange = (id) => {
         navigate('/equipa/'.concat(id));
