@@ -1,0 +1,49 @@
+.sobre{
+    display: flex;
+}
+
+.inicioContainer{
+    flex:5;
+}
+
+.tituloSobre {
+    margin: 40px 30px;
+    text-align: center;
+    color: #acabab;
+    font-size: 40px;
+}
+
+.observacoes{
+    text-align: left;
+}
+
+.dadosAluno{
+    text-align: left;
+    list-style-type: none;
+}
+
+.frameworks{
+    margin-top: 50px;
+    text-align: left;
+}
+
+.detailFramework{
+    margin-top: 20px;
+}
+
+.linkSobre{
+    text-decoration: none;
+    color: #00799e;
+    font-size: 16px;
+    font-weight: 400;
+    border: 1px solid #00799e;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.linkSobre:hover{
+    color: white;
+    background-color: #00a1d1;
+}

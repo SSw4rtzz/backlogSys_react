@@ -1,11 +1,3 @@
-.single{
-    display: flex;
-    width: 100%;
-}
-
-.singleContainer{
-    flex: 6;
-}
 
 .espaco{
     padding: 50px;
@@ -42,21 +34,23 @@
 }
 
 .itemImg{
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
+    border-radius: 10%;
+    object-fit: cover;
+}
+
+.itemImgUser{
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     object-fit: cover;
 }
 
-.details{
+.detailsUser{
     margin-bottom: 10px;
     color: #555;
     text-align: left;
-}
-
-.detailItem{
-    margin-bottom: 10px;
-    font-size: 14px;
 }
 
 .itemTitle{
@@ -64,15 +58,7 @@
     color: #555;
 }
 
-.itemKey{
-    font-weight: bold;
-    color:gray;
-    margin-right: 5px;
-}
 
-.itemValue{
-    font-weight: 300;
-}
 
 .right{
     flex: 2;

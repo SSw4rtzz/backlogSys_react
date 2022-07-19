@@ -69,12 +69,6 @@
 }
 /* ----------------- */
 
-.cellOption{
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
 .viewButton{
     padding: 2px 5px;
     font-size: 20px;

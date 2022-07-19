@@ -1,5 +1,6 @@
 import "./dadosMembros.css";
 import {DataGrid} from "@mui/x-data-grid";
+import Avatar from "@mui/material/Avatar";
 import {Link, useNavigate} from "react-router-dom";
 import { useState,useEffect } from "react";
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -13,9 +14,25 @@ const columns = [
     {field: "nome", headerName: "Nome", width: 200, editable: true }, //Possibilidade de edição na própria tabela
     {field: "email", headerName: "Email", width: 250, editable: true}, //Possibilidade de edição
     {field: "efetividade", headerName: "Efetividade", width: 170, sortable: false, filterable: false},
-    {field: "foto", headerName: "Foto", width: 100},
-    {field: "equipaFK", headerName: "Equipa", width: 100},
+    {field: "foto", headerName: "Foto", width: 100,
+        renderCell: (params) => {return(
+            <Avatar src={'../Fotos/' + params.value} variant="rounded" />
+        )}},
+    {field: "nomeEquipa", headerName: "Equipa", width: 150},
 ]
+
+async function DeleteMembro(id){
+    let formData = new FormData();
+    formData.append("id", id);
+    let response = await fetch("/api/MembrosAPI/" + id, {
+        method: "DELETE",
+        body: formData
+    });
+    if(!response.ok){
+        console.error(response);
+        throw new Error("Erro ao apagar o utilizador, codigo: " + response.status);
+    }
+}
 
 const DadosMembros = () => {
 
@@ -32,7 +49,12 @@ const DadosMembros = () => {
 
     //Apaga linha/dado
     const handleDelete = (id) => {
-        setTableData(tableData.filter((item) => item.id !== id));
+        try{
+            DeleteMembro(id);
+            setTableData(tableData.filter((item) => item.id !== id));
+        } catch (error){
+            console.error("Ocorreu um erro ao tentar apagar o animal");
+        }
     };
 
     //Mostra um membro individual navegando para o link /equipa/(id do membro selecionado)
@@ -72,10 +94,7 @@ const DadosMembros = () => {
     return (
         <div className="dadosMembros">
             <div className="dadosMembrosTitle">
-                Adicionar uma tarefa     
-                <Link to="/equipa/new" className="link">
-                   Adicionar
-                </Link>
+                Utilizadores  
             </div>
             <DataGrid className="dataGrid"
                 columns={columns.concat(optionColumn)}

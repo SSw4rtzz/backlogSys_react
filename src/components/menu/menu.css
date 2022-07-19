@@ -49,8 +49,12 @@
     border-radius: 10px;
 }
 
+.active{
+    font-weight: bold;
+    color:#2c2c2c;
+}
 
-.active, .menuListItem:hover{
+.menuListItem:hover{
     background-color: #d4d3d3;
     font-weight: bold;
     color:#2c2c2c;

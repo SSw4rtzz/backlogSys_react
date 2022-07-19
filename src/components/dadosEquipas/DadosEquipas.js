@@ -16,6 +16,19 @@ const columns = [
     {field: "chefe", headerName: "Chefe", width: 100},
 ]
 
+async function DeleteEquipa(id){
+    let formData = new FormData();
+    formData.append("id", id);
+    let response = await fetch("/api/EquipaAPI/" + id, {
+        method: "DELETE",
+        body: formData
+    });
+    if(!response.ok){
+        console.error(response);
+        throw new Error("Erro ao apagar a tarefa, codigo: " + response.status);
+    }
+}
+
 const DadosEquipas = () => {
 
     const [tableData, setTableData] = useState([])
@@ -31,13 +44,21 @@ const DadosEquipas = () => {
 
     //Apaga linha/dado
     const handleDelete = (id) => {
-        setTableData(tableData.filter((item) => item.id !== id));
+        try{
+            DeleteEquipa(id);
+            setTableData(tableData.filter((item) => item.id !== id));
+        } catch (error){
+            console.error("Ocorreu um erro ao tentar apagar o animal");
+        }
     };
 
     //Mostra a equipa individual navegando para o link /gerirEquipas/(id selecionado)
     const navigate = useNavigate();
-    const routeChange = (id) => {
+    const routeChangeView = (id) => {
         navigate('/gerirEquipas/'.concat(id));
+    };
+    const routeChangeEdit = (id) => {
+        navigate('/gerirEquipas/edit/'.concat(id));
     };
 
     //Coluna de opções, Ver e Apagar
@@ -45,7 +66,7 @@ const DadosEquipas = () => {
         {
             field: "option",
             headerName: "Opções",
-            width: 100,
+            width: 120,
             sortable: false,
             hideable: false,
             filterable: false,
@@ -54,8 +75,11 @@ const DadosEquipas = () => {
             renderCell: (params) => {
                 return (
                     <div className="cellOption">
-                        <div className="viewButton" onClick={() => routeChange(params.row.id)}>
-                            <FontAwesomeIcon icon={["fas","eye"]} className="viewButton" />
+                        <div className="viewButton" onClick={() => routeChangeView(params.row.id)}>
+                            <FontAwesomeIcon icon={["fas","eye"]} />
+                        </div>
+                        <div className="viewButton" onClick={() => routeChangeEdit(params.row.id)}>
+                            <FontAwesomeIcon icon={["fas","pen"]} />
                         </div>
                         <div className="deleteButton" onClick={() => handleDelete(params.row.id)}>
                             <FontAwesomeIcon icon={["fas","trash"]} />
@@ -71,10 +95,15 @@ const DadosEquipas = () => {
     return (
         <div className="dadosEquipas">
             <div className="dadosEquipasTitle">
-                Adicionar uma tarefa     
-                <Link to="/gerirEquipas/new" className="link">
-                   Adicionar
+                Equipas
+                <div className="linksAdm">
+                <Link to="/gerirEquipas/new" className="linkEquipa">
+                   Adicionar Equipa
                 </Link>
+                <Link to="/equipa/new" className="linkUtilizador">
+                   Adicionar Utilizador
+                </Link>
+                </div>
             </div>
             {/* Tabela criada com framework DataGrid */}
             <DataGrid className="dataGrid"

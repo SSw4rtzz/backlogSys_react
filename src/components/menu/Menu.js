@@ -13,7 +13,9 @@ export default function Menu(){
         <div className="menu">
             <div className="menuWrapper">
             <div className="top">
+            <NavLink to="/" style={{textDecoration:"none"}}>
                     <span className="logo">BacklogSys</span>    {/* Logotipo BacklogSys na parte superior esquerda */}
+                </NavLink>
                 </div>
                 <div className="menuContent">
                     <h3 className="menuTitle"> Opções </h3>
@@ -33,16 +35,16 @@ export default function Menu(){
                         <NavLink to="/equipa" style={{textDecoration:"none"}} className="menuListItemStyle" activeclassname="active">
                         <li className="menuListItem">
                             <FontAwesomeIcon icon={["fas","users"]} className="iconMenu" />   {/* Equipa */}
-                            Equipa
+                            Utilizadores
                         </li>
                         </NavLink>
                     </ul>
                     <h3 className="menuTitle"> Área Pessoal </h3>
                     <ul className="menuList">
-                        <NavLink to="/user" style={{textDecoration:"none"}} className="menuListItemStyle" activeclassname="active">
+                        <NavLink to="/user/1" style={{textDecoration:"none"}} className="menuListItemStyle" activeclassname="active">
                         <li className="menuListItem">
                             <FontAwesomeIcon icon={["fas","user"]} className="iconMenu"/>   {/*  Utilizador (Mostra o perfil do utilizador) */}
-                            Utilizador
+                            Perfil
                         </li>
                         </NavLink>
                         <li className="menuListItem">
@@ -70,10 +72,12 @@ export default function Menu(){
                             <FontAwesomeIcon icon={["fas","calendar-check"]} className="iconMenu"/>   {/* Team leader e chefe podem definir prazos e definir tarefas a trabalhadores, o chefe pode ainda definir prioritárias */}
                             Definir prazos
                         </li>
+                        <NavLink to="/sobre" style={{textDecoration:"none"}} className="menuListItemStyle" activeclassname="active">
                         <li className="menuListItem">
-                            <FontAwesomeIcon icon={["fas","chart-simple"]} className="iconMenu"/>   {/* Ver estatisticas de todas as equipas (Chefe apenas) */}
-                            Estatitiscas gerais
+                            <FontAwesomeIcon icon={["fas","dna"]} className="iconMenu"/>   {/* Creditos */}
+                            Sobre a aplicação
                         </li>
+                        </NavLink>
                     </ul>
                 </div>
             </div>

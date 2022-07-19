@@ -46,11 +46,6 @@ class NewTarefa extends React.Component{
     this.props.dadosOut(dadosForm);
   }
 
-  renderRedirect = () => {
-      //return <Redirect to="/tarefas" />
-  }
-
-
 
   render(){
       const{titulo, descricao, pontoSituacao, membrosFK, dataCriacao, dataConclusao, prioridade, prazo} = this.state;
@@ -79,11 +74,12 @@ class NewTarefa extends React.Component{
               </div>
               <div className="formInput">
                 <label>Membros: </label>
-                <input type="number" placeholder="Membros" name="membrosFK" value={membrosFK} onChange={this.handleAdicao}/>
+                <input type="number" placeholder="Numero Empregado" name="membrosFK" value={membrosFK} onChange={this.handleAdicao}/>
               </div>
               <div className="formInput">
                 <label>Ponto de Situação: </label>
                 <select type="text" placeholder="Ponto de Situação" name="pontoSituacao" value={pontoSituacao} onChange={this.handleAdicao}>
+                  <option value="">Ponto de Situação</option>
                   <option value="Por fazer">Por fazer</option>
                   <option value="Em desenvolvimento">Em desenvolvimento</option>
                   <option value="Em espera">Em espera</option>
@@ -105,6 +101,7 @@ class NewTarefa extends React.Component{
               <div className="formInput">
                 <label>Prioridade: </label>
                 <select type="text" placeholder="Prioridade" name="prioridade" value={prioridade} onChange={this.handleAdicao}>
+                  <option value="">Selecione uma prioridade (Caso exista)</option>
                   <option value="Baixa">Baixa</option>
                   <option value="Média">Média</option>
                   <option value="Alta">Alta</option>

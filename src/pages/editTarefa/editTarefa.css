@@ -30,8 +30,12 @@ h1{
     justify-content: space-around;
 }
 
-.formImput{
+.formImput .formInputFoto{
     width: 40%;
+}
+
+.formInputFoto{
+    display: none;
 }
 
 .input{

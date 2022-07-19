@@ -94,12 +94,12 @@ const DadosTarefas = () => {
             
             renderCell: (params) => {
                 return (
-                    <div className="cellOptionTarefas">
+                    <div className="cellOption">
                         <div className="viewButton" onClick={() => routeChangeView(params.row.id)}>
-                            <FontAwesomeIcon icon={["fas","eye"]} className="viewButton" />
+                            <FontAwesomeIcon icon={["fas","eye"]}  />
                         </div>
                         <div className="viewButton" onClick={() => routeChangeEdit(params.row.id)}>
-                            <FontAwesomeIcon icon={["fas","pen"]} className="viewButton" />
+                            <FontAwesomeIcon icon={["fas","pen"]}  />
                         </div>
                         <div className="deleteButton" onClick={() => handleDelete(params.row.id)}>
                             <FontAwesomeIcon icon={["fas","trash"]} />
@@ -109,8 +109,6 @@ const DadosTarefas = () => {
             },
         },
     ];
-
-
 
     return (
         <div className="dadosTarefas">
