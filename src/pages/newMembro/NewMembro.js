@@ -81,7 +81,7 @@ class NewMembro extends React.Component{
               </div>
               <div className="formInput">
                 <label>Equipa: </label>
-                <input type="string" placeholder="Equipa" name="equipaFK" value={equipaFK} onChange={this.handleAdicao}/>
+                <input type="number" placeholder="Numero equipa" name="equipaFK" value={equipaFK} onChange={this.handleAdicao}/>
               </div>
                 <input type="submit" value="Adicionar"/>
               </form>

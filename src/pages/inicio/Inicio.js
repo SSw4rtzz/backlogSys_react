@@ -39,7 +39,7 @@ class Inicio extends React.Component {
   }
 
     render() {
-        const{membros, tarefas} = this.state;
+        const{membros} = this.state;
     return (
     <div className="inicio">
         <Menu/>

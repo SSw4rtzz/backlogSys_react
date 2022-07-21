@@ -51,7 +51,7 @@ render() {
                 countProgresso++;
             } else if(tarefa.pontoSituacao == "Por fazer"){
                 countNovas++;
-            } else if(tarefa.pontoSituacao == "Concluido" && dataConc == data){
+            } else if(tarefa.pontoSituacao == "Concluido" && dataConc == Date){
                 countConcluidas++;
             }
         }

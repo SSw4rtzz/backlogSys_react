@@ -107,11 +107,11 @@ class EditEquipa extends React.Component{
               </div>
               <div className="formInput">
                 <label>Team Leader: </label>
-                <input ref={this.teamLeader} type="number" placeholder="TeamLeader" name="teamLeader" defaultValue={equipa.teamLeader}/>
+                <input ref={this.teamLeader} type="number" placeholder="Numero Team Leader" name="teamLeader" defaultValue={equipa.teamLeader}/>
               </div>
               <div className="formInput">
                 <label>Chefe: </label>
-                <input ref={this.chefe} type="number" placeholder="Chefe" name="chefe" defaultValue={equipa.chefe}/>
+                <input ref={this.chefe} type="number" placeholder="Numero Chefe" name="chefe" defaultValue={equipa.chefe}/>
               </div>
               <input type="submit" value="Adicionar"/>
             </form>

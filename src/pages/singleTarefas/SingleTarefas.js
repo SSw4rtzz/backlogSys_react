@@ -1,6 +1,7 @@
 import "./singleTarefas.css";
 import Menu from "../../components/menu/Menu"
 import Topbar from "../../components/topbar/Topbar"
+import Moment from 'moment';
 
 import React from "react";
 
@@ -42,6 +43,9 @@ class SingleTarefas extends React.Component{
 
   render(){
     const{tarefas} = this.state;
+    const dataCri = Moment(tarefas.dataCriacao).format('DD MMM YYYY');
+    const dataConc = Moment(tarefas.dataCriacao).format('DD MMM YYYY');
+    const prazo = Moment(tarefas.dataCriacao).format('DD MMM YYYY');
     console.log(tarefas);
     
     //const{dados} = this.props;
@@ -68,24 +72,24 @@ class SingleTarefas extends React.Component{
               <span className="itemValue">{tarefas.descricao}</span>
             </div>
             <div className="detailItem">
-              <span className="itemKey">Ponto de Situação</span>
+              <span className="itemKey">Ponto de Situação:</span>
               <span className="itemValue">{tarefas.pontoSituacao}</span>
             </div>
             <div className="detailItem">
-              <span className="itemKey">Membros</span>
+              <span className="itemKey">Membro:</span>
               <span className="itemValue">{tarefas.membrosFK}</span>
             </div>
             <div className="detailItem">
               <span className="itemKey">Data de Criação:</span>
-              <span className="itemValue">{tarefas.dataCriacao}</span>
+              <span className="itemValue">{dataCri}</span>
             </div>
             <div className="detailItem">
-              <span className="itemKey">Prazo</span>
-              <span className="itemValue">{tarefas.prazo}</span>
+              <span className="itemKey">Prazo:</span>
+              <span className="itemValue">{dataConc}</span>
             </div>
             <div className="detailItem">
               <span className="itemKey">Data de Conclusão:</span>
-              <span className="itemValue">{tarefas.dataConclusao}</span>
+              <span className="itemValue">{prazo}</span>
             </div>
             <div className="detailItem">
               <span className="itemKey">Prioridade:</span>

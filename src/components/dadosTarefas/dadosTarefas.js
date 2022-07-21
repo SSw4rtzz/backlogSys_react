@@ -21,9 +21,35 @@ const columns = [
         }  
     },
     {field: "membrosFK", headerName: "Membros", width: 80, sortable: false, filterable: false},
-    {field: "dataCriacao", headerName: "Criação", width: 120},
-    {field: "dataConclusao", headerName: "Concluido", width: 140},
-    {field: "prazo", headerName: "Prazo", width: 140},
+    {field: "dataCriacao", headerName: "Criação", width: 120,
+    renderCell: (params) => {
+        return (
+            <div>
+                {params.row.dataCriacao.substring(0,10)}<br/>
+                {params.row.dataCriacao.substring(11,19)}
+            </div>
+        );
+    }},
+    {field: "dataConclusao", headerName: "Concluido", width: 140,
+    renderCell: (params) => {
+        if(params.row.dataConclusao != null){
+        return (
+            <div>
+                {params.row.dataConclusao.substring(0,10)}<br/>
+                {params.row.dataConclusao.substring(11,19)}
+            </div>
+        );
+        }
+    }},
+    {field: "prazo", headerName: "Prazo", width: 140,
+    renderCell: (params) => {
+        return (
+            <div>
+                {params.row.prazo.substring(0,10)}<br/>
+                {params.row.prazo.substring(11,19)}
+            </div>
+        );
+    }},
     {field: "prioridade", headerName: "Prioridade", width: 90,
         renderCell: (params) => {
             return (
